@@ -38,5 +38,11 @@ public class StudentController {
 	public List<Student> mybatisLikelime() {
 		return studentService.likeName("小");
 	}
+	
+	@ResponseBody
+	@RequestMapping("/likename2")
+	public List<Student> mybatisLikelime2() {
+		return studentService.likeNameDefaultDataSource("小");
+	}
 
 }

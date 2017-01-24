@@ -24,6 +24,10 @@
 	<a href="${contextPath}/student/findAllJpa">student find all by jpa</a>
 	<br/>
 	<a href="${contextPath}/student/likename">student find name like '小' mybatis</a>
+	<br/>
+	<a href="${contextPath}/student/likename2">student find name like DefaultDataSource '小' mybatis</a>
+	
+	
 	<script type="text/javascript">
 		$(function(){
 			test();

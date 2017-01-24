@@ -46,8 +46,8 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 	public void registerBeanDefinitions(AnnotationMetadata metaDate, BeanDefinitionRegistry registry) {
 		Map<Object, Object> targetDataSources = new HashMap<>();
 		// 将主数据源添加到目标数据源集合中去
-		targetDataSources.put("dataSource", defaultDataSource);
-		DynamicDataSourceContextHolder.dataSourceIds.add("dataSource");
+		targetDataSources.put(DEFAULT_DEFINIT_DATASOURCE_NAME, defaultDataSource);
+		DynamicDataSourceContextHolder.dataSourceIds.add(DEFAULT_DEFINIT_DATASOURCE_NAME);
 		
 		// 添加其他自定义的数据源
 		targetDataSources.putAll(customDataSources);
@@ -60,16 +60,16 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 		beanDefinition.setBeanClass(DynamicDataSource.class);
 		beanDefinition.setSynthetic(true);
 		MutablePropertyValues mpv = beanDefinition.getPropertyValues();
-		mpv.addPropertyValue("defaultTargetDataSource", defaultDataSource);
-		mpv.addPropertyValue("targetDataSources", beanDefinition);
-		registry.registerBeanDefinition("dataSource", beanDefinition);
-		logger.info("registry dynamic data soruce....");
+		mpv.addPropertyValue(DEFAULT_TARGET_DATASOURCE, defaultDataSource);
+		mpv.addPropertyValue(TARGET_DATASOURCES, targetDataSources);
+		registry.registerBeanDefinition(DEFAULT_DEFINIT_DATASOURCE_NAME, beanDefinition);
+		logger.info(">>>>registry dynamic data soruce....");
 		
 	}
 	
 	@Override
 	public void setEnvironment(Environment environment) {
-		System.err.println("setEnvironment.. ");
+		logger.info("set environment when rigiste custom datasource");
 		initDefaultDataSource(environment);
 		initCustomDataSources(environment);
 	}

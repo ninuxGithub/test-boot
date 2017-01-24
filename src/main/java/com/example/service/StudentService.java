@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
+import com.example.datasource.TargetDataSource;
 import com.example.entity.Student;
 import com.example.mapper.StudentMapper;
 
@@ -17,14 +18,19 @@ public class StudentService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	private StudentMapper studentMapper;
-	
-	public List<Student> likeName(String name){
+
+	@TargetDataSource(name = "ds1")
+	public List<Student> likeName(String name) {
 		return studentMapper.likeName(name);
 	}
 	
+	
+	public List<Student> likeNameDefaultDataSource(String name) {
+		return studentMapper.likeName(name);
+	}
 
 	public List<Student> findAll() {
 		String sql = "SELECT ID,NAME,SCORE_SUM,SCORE_AVG, AGE   FROM STUDENT";
