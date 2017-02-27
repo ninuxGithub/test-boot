@@ -63,13 +63,13 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 		mpv.addPropertyValue(DEFAULT_TARGET_DATASOURCE, defaultDataSource);
 		mpv.addPropertyValue(TARGET_DATASOURCES, targetDataSources);
 		registry.registerBeanDefinition(DEFAULT_DEFINIT_DATASOURCE_NAME, beanDefinition);
-		logger.info(">>>>registry dynamic data soruce....");
+		logger.info(">>>>DynamicDataSourceRegister registry dynamic data soruce....");
 		
 	}
 	
 	@Override
 	public void setEnvironment(Environment environment) {
-		logger.info("set environment when rigiste custom datasource");
+		logger.info(">>>>DynamicDataSourceRegister set environment when rigiste custom datasource");
 		initDefaultDataSource(environment);
 		initCustomDataSources(environment);
 	}

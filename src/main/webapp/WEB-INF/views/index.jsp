@@ -25,12 +25,39 @@
 	<br/>
 	<a href="${contextPath}/student/likename">student find name like '小' mybatis</a>
 	<br/>
-	<a href="${contextPath}/student/likename2">student find name like DefaultDataSource '小' mybatis</a>
+	<a href="${contextPath}/student/likename2.json">student find name like DefaultDataSource '小' mybatis</a>
 	
+	
+	<button id="testJsonp"> testJsonp</button>
+	
+	<div id="show">
+	
+	</div>
 	
 	<script type="text/javascript">
 		$(function(){
 			test();
+			var value ="";
+			 $("#testJsonp").click(function(){ 
+		         $.ajax({ 
+		            type: "get", 
+		            url:'http://localhost:8080/test-boot/testJson.json?name=Tom&name1=Lily', 
+		           
+		            async: false, 
+		            dataType: "jsonp", 
+		            jsonp:"callback", //服务端用于接收callback调用的function名的参数(请使用callback或jsonp)
+		            jsonpCallback:"success_callback", //callback的function名称
+		            success: function(json) { 
+		               value = json.name;
+		            },
+		            error:function(){
+		                value = "rquest Error";
+		            } 
+		        }); 
+		         
+		        $("#show").html(value); 
+		    });    
+			
 		});
 	</script>
 

@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.datasource.TargetDataSource;
 import com.example.entity.Student;
 import com.example.mapper.StudentMapper;
 
 @Service
+@Transactional("txManager2")
 public class StudentService {
 
 	@Autowired
